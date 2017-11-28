@@ -1,4 +1,14 @@
 <menu>
+    <menuitem label='Cadastros'>
+        <icon>fa:cogs fa-fw</icon>
+        <menu>
+              <menuitem label='Turmas'>
+                  <icon>fa:group fa-fw</icon>
+                  <action>TurmaForm</action>
+              </menuitem>
+        </menu>
+    </menuitem>
+    
     <menuitem label='_t{Administration}'>
         <icon>fa:university fa-fw</icon>
         <menu>
