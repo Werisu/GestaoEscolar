@@ -28,6 +28,7 @@ class TurmaList extends Adianti\Base\TStandardList{
         parent::setDefaultOrder('id', 'asc');         // defines the default order
         parent::addFilterField('id', '=', 'id'); // filterField, operator, formField
         parent::addFilterField('turno', 'like', 'turno'); // filterField, operator, formField
+        parent::addFilterField('sala_idsala', 'like', 'sala_idsala'); // filterField, operator, formField
         
         // creates the form
         $this->form = new BootstrapFormBuilder('form_busca_turmas');
@@ -36,10 +37,12 @@ class TurmaList extends Adianti\Base\TStandardList{
         // create the form fields
         $id = new TEntry('id');
         $turno = new TEntry('turno');
+        $sala = new TEntry('sala_idsala');
         
         // add the fields
         $this->form->addFields( [new TLabel('Id')], [$id] );
         $this->form->addFields( [new TLabel('Turno')], [$turno] );
+        $this->form->addFields( [new TLabel('Sala')], [$sala] );
         
         // keep the form filled during navigation with session data
         $this->form->setData( TSession::getValue('form_busca_turmas') );
@@ -56,10 +59,12 @@ class TurmaList extends Adianti\Base\TStandardList{
         // creates the datagrid columns
         $column_id = new TDataGridColumn('id', 'Id', 'center', 50);
         $column_turno = new TDataGridColumn('turno', 'Turno', 'left');
+        $column_sala = new TDataGridColumn('sala_idsala', 'Sala', 'left');
         
         // add the columns to the DataGrid
         $this->datagrid->addColumn($column_id);
         $this->datagrid->addColumn($column_turno);
+        $this->datagrid->addColumn($column_sala);
         
         // creates the datagrid column actions
         $order_id = new TAction(array($this, 'onReload'));

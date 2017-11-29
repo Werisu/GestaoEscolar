@@ -1,5 +1,7 @@
 <?php
 
+
+
 /**
  * A classe TurmaForm.class.php vai ser a classe mais complicada de se implementar, não sei se conseguirei.
  *
@@ -11,6 +13,7 @@ class TurmaForm extends \Adianti\Control\TPage {
     //put your code here
     
     private $form;
+    private $datagrid;
     public function __construct() {
         parent::__construct();
         
@@ -19,9 +22,48 @@ class TurmaForm extends \Adianti\Control\TPage {
         
         $id = new \Adianti\Widget\Form\TEntry('id');
         $turno = new \Adianti\Widget\Form\TEntry('turno');
+        $sala = new \Adianti\Widget\Form\TCombo('sala_idsala');
+        $file      = new TFile('file');
+        $multifile = new TMultiFile('multifile');
         
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "gestao_escolar";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+
+        $sql = "SELECT idSala FROM Sala";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            $combo_items = array();
+            while($row = $result->fetch_assoc()) {
+                #echo "id: " . $row["idSala"]. "<br>";
+                $combo_items[$row["idSala"]] =$row["idSala"];
+            }
+        } else {
+            echo "0 results";
+        }
+        $conn->close();
+        
+        
+        $sala->addItems($combo_items);
+        
+        $this->form->appendPage('Dados');
         $this->form->addFields( [new TLabel('ID da turma')],[$id]);
         $this->form->addFields( [new TLabel('Turno')],[$turno] );
+        $this->form->addFields( [new TLabel('Sala')],[$sala] );
+        $this->form->appendPage('File upload components');
+        $this->form->addContent( [new TFormSeparator('File components')] );
+        $this->form->addFields( [ new TLabel('TFile') ],      [ $file ] );
+        $this->form->addFields( [ new TLabel('TMultiFile') ], [ $multifile ] );
         #$this->form->addQuickField('ID da turma', $id);
         #$this->form->addQuickField('turno', $turno);
         

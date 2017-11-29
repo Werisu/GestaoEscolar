@@ -11,13 +11,14 @@ class Turma extends \Adianti\Database\TRecord {
     //put your code here
     const TABLENAME = 'turma';
     const PRIMARYKEY = 'id';
-    const IDPOLICY = 'max';
+    const IDPOLICY = 'serial';
     
     public function __construct($id = null) {
         parent::__construct($id);
         
         parent::addAttribute('id');
         parent::addAttribute('turno');
+        parent::addAttribute('sala_idsala');
     }
     
 }

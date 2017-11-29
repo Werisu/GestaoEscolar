@@ -6,6 +6,10 @@
                   <icon>fa:group fa-fw</icon>
                   <action>TurmaList</action>
               </menuitem>
+              <menuitem label='Salas'>
+                  <icon>fa:group fa-fw</icon>
+                  <action>SalaList</action>
+              </menuitem>
         </menu>
     </menuitem>
     
