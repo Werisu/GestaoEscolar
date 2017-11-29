@@ -4,7 +4,7 @@
         <menu>
               <menuitem label='Turmas'>
                   <icon>fa:group fa-fw</icon>
-                  <action>TurmaForm</action>
+                  <action>TurmaList</action>
               </menuitem>
         </menu>
     </menuitem>

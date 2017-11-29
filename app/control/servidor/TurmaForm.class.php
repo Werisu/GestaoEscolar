@@ -11,68 +11,97 @@ class TurmaForm extends \Adianti\Control\TPage {
     //put your code here
     
     private $form;
-
-
     public function __construct() {
         parent::__construct();
         
-        $this->form = new Adianti\Widget\Wrapper\TQuickForm('form_turma');
+        $this->form = new BootstrapFormBuilder('form_turma');
         $this->form->setFormTitle('Cadastro de Turmas');
-        $this->form->class = 'tform';
         
         $id = new \Adianti\Widget\Form\TEntry('id');
         $turno = new \Adianti\Widget\Form\TEntry('turno');
         
-        $this->form->addQuickField('ID da turma', $id);
-        $this->form->addQuickField('turno', $turno);
+        $this->form->addFields( [new TLabel('ID da turma')],[$id]);
+        $this->form->addFields( [new TLabel('Turno')],[$turno] );
+        #$this->form->addQuickField('ID da turma', $id);
+        #$this->form->addQuickField('turno', $turno);
         
         
         // Ações do adiante
-        $salvar = new Adianti\Control\TAction( array($this, 'onSave'));
-        $this->form->addQuickAction('Salvar', $salvar, 'ico_save.png');
+        $this->form->addAction(_t('Save'), new TAction(array($this, 'onSave')), 'fa:floppy-o');
+        #$salvar = new Adianti\Control\TAction( array($this, 'onSave'));
+        #$this->form->addQuickAction('Salvar', $salvar, 'ico_save.png');
         
-        $listar = new Adianti\Control\TAction(array('TurmaList','onReload'));
-        $this->form->addQuickAction('Listar', $listar, 'ico_datagrid.png');
+        $this->form->addAction(_t('Back to the listing'), new TAction(array('TurmaList','onReload')), 'fa:table blue');
+        #$listar = new Adianti\Control\TAction(array('TurmaList','onReload'));
+        #$this->form->addQuickAction('Listar', $listar, 'ico_datagrid.png');
         
-        parent::add($this->form);
+        $container = new TVBox();
+        $container->style = 'width: 90%';
+        $container->add($this->form);
+        $this->add($container);
         
     }
     
     public function onSave() {
         
-        try {
-            \Adianti\Database\TTransaction::open('gestao_escolar');
-            
-            $object = $this->form->getData('Turma');
-            
-            $object->store();
-            
-            $this->form->setData($object);
-            
-            new \Adianti\Widget\Dialog\TMessage('info', 'Turma Registrada!');
-            
-            \Adianti\Database\TTransaction::close();
-        } catch (Exception $e) {
-            new \Adianti\Widget\Dialog\TMessage('error', $e->getMessage());
-            \Adianti\Database\TTransaction::rollback();
+         try{
+            #$this->form->validate();
+            TTransaction::open('gestao_escolar');
+            $data = $this->form->getData();
+            $turno = new Turma();
+            $turno->fromArray( (array) $data);
+            $turno->store();
+            TTransaction::close();
+            new TMessage('info', 'Salvo com Sucesso');
+            $this->form->setData($turno);
+        } catch (Exception $ex) {
+            new TMessage('error', $ex->getMessage());
+            $this->form->setData( $this->form->getData() ); //error
+            TTransaction::rollback();
         }
         
     }
     
     public function onEdit($param) {
         try{
-            \Adianti\Database\TTransaction::open('gestao_escolar');
+            if(array_key_exists('id', $param)){
+                
             
-            $key = $param['key'];
+            TTransaction::open('gestao_escolar');
+            $turno = new Turma($param['id']);
+            TTransaction::close();
+            $this->form->setData($turno);
+            }else{
+                $this->onClear();
+            }
+        } catch (Exception $ex) {
+            new TMessage('error', $ex->getMessage());
+            $this->form->setData( $this->form->getData() ); //error
+            TTransaction::rollback();
+        }
+    }
+    
+     public function onClear($param){
+        
+    }
+    
+    public function onDelete($param) {
+        try{
+            if(array_key_exists('id', $param)){
+                
             
-            $object = new Turma($key);
-            
-            $this->form->setData($object);
-            
-            \Adianti\Database\TTransaction::close();
-        } catch (Exception $e) {
-            new \Adianti\Widget\Dialog\TMessage('error', $e->getMessage());
-            
+            TTransaction::open('gestao_escolar');
+            $turno = new OsStatus($param['id']);
+            $turno->delete();
+            TTransaction::close();
+            $this->form->setData($turno);
+            }else{
+                $this->onClear();
+            }
+        } catch (Exception $ex) {
+            new TMessage('error', $ex->getMessage());
+            $this->form->setData( $this->form->getData() ); //error
+            TTransaction::rollback();
         }
     }
     
