@@ -31,7 +31,12 @@ $result = mysqli_query($conn, 'SELECT `file` FROM docente WHERE nome = "' . TSes
 while (($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) != NULL) {
     
     $file = $row['file'];
-    $content  = str_replace('{userfile}', ($file), $content);
+    $file2 = "../templates/{template}/images/user.png" ;
+    if($file):
+        $content  = str_replace('{userfile}', ($file), $content);
+    else:
+        $content  = str_replace('{userfile}', ($file2), $content);
+    endif;
     
 }
 mysqli_free_result($result);
