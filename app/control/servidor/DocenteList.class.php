@@ -180,9 +180,9 @@ class DocenteList extends \Adianti\Base\TStandardList {
                     $tr->addRow();
                     $tr->addCell('Registro',      'left', 'title');
                     $tr->addCell('Nome',      'left', 'title');
-                    $tr->addCell('Category',  'left', 'title');
+                    $tr->addCell('Formação',  'left', 'title');
                     $tr->addCell('Email',     'left', 'title');
-                    $tr->addCell('Birthdate', 'left', 'title');
+                    $tr->addCell('CPF', 'left', 'title');
                     
                     // controls the background filling
                     $colour= FALSE;
@@ -196,7 +196,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
                         $tr->addCell($customer->nome,               'left', $style);
                         $tr->addCell($customer->formacao    ,  'left', $style);
                         $tr->addCell($customer->email,              'left', $style);
-                        $tr->addCell($customer->birthdate,          'left', $style);
+                        $tr->addCell($customer->cpf,          'left', $style);
                         
                         $colour = !$colour;
                     }
