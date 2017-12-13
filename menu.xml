@@ -12,7 +12,7 @@
               </menuitem>
               <menuitem label='Docentes'>
                   <icon>fa:id-card fa-fw</icon>
-                  <action>DocenteForm</action>
+                  <action>DocenteList</action>
               </menuitem>
         </menu>
     </menuitem>

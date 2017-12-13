@@ -76,7 +76,7 @@ class DocenteForm extends \Adianti\Control\TPage {
         
         //Ações
         $this->formulario->addAction(_t('Save'), new TAction(array($this, 'onSave')), 'fa:floppy-o');
-        #$this->form->addAction(_t('Back to the listing'), new TAction(array('SalaList','onReload')), 'fa:table blue');
+        $this->formulario->addAction(_t('Back to the listing'), new TAction(array('DocenteList','onReload')), 'fa:table blue');
         $this->formulario->addAction(_t('New'),  new TAction(array($this, 'onClear')), 'fa:eraser red');
         $this->formulario->addAction(_t('Delete'),  new TAction(array($this, 'onDelete')), 'fa:trash-o red fa-lg');
         
@@ -96,7 +96,7 @@ class DocenteForm extends \Adianti\Control\TPage {
             $sala->fromArray((array) $data);
             $sala->store();
             \Adianti\Database\TTransaction::close();
-            new Adianti\Widget\Dialog\TMessage('info', 'Sala Cadastrada');
+            new Adianti\Widget\Dialog\TMessage('info', 'Docente Registrado');
             $this->formulario->setData($sala);
         } catch (Exception $ex) {
             new Adianti\Widget\Dialog\TMessage('error', $ex->getMessage());
@@ -107,19 +107,19 @@ class DocenteForm extends \Adianti\Control\TPage {
     
     public function onEdit($param){
         try{
-            if(array_key_exists('idSala', $param)){
+            if(array_key_exists('registro', $param)){
                 
             
             TTransaction::open('gestao_escolar');
-            $status = new Sala($param['idSala']);
+            $status = new Docente($param['registro']);
             TTransaction::close();
-            $this->form->setData($status);
+            $this->formulario->setData($status);
             }else{
                 $this->onClear();
             }
         } catch (Exception $ex) {
             new TMessage('error', $ex->getMessage());
-            $this->form->setData( $this->form->getData() ); //error
+            $this->formulario->setData( $this->formulario->getData() ); //error
             TTransaction::rollback();
         }
     }
@@ -130,20 +130,20 @@ class DocenteForm extends \Adianti\Control\TPage {
     
     public function onDelete($param) {
         try{
-            if(array_key_exists('idSala', $param)){
+            if(array_key_exists('registro', $param)){
                 
             
             TTransaction::open('gestao_escolar');
-            $status = new Sala($param['idSala']);
+            $status = new Docente($param['registro']);
             $status->delete();
             TTransaction::close();
-            $this->form->setData($status);
+            $this->formulario->setData($status);
             }else{
                 $this->onClear();
             }
         } catch (Exception $ex) {
             new TMessage('error', $ex->getMessage());
-            $this->form->setData( $this->form->getData() ); //error
+            $this->formulario->setData( $this->formulario->getData() ); //error
             TTransaction::rollback();
         }
     }
