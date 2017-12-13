@@ -27,7 +27,7 @@ else
 include_once './app/config/gestaoescolar.ini.php';
 
 
-$result = mysqli_query($conn, 'SELECT `file` FROM docente');
+$result = mysqli_query($conn, 'SELECT `file` FROM docente WHERE nome = "' . TSession::getValue('username') .'"' );
 while (($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) != NULL) {
     
     $file = $row['file'];

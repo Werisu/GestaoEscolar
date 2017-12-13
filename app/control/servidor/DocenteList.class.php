@@ -100,7 +100,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
         $action_del->setField('registro');
         $this->datagrid->addAction($action_del);
         
-        $this->form->addAction( 'Generate', new TAction(array($this, 'onGenerate')), 'fa:download blue');
+        $this->form->addAction( 'Gerar', new TAction(array($this, 'onGenerate')), 'fa:download blue');
                 
         // create the datagrid model
         $this->datagrid->createModel();
