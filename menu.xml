@@ -10,6 +10,10 @@
                   <icon>fa:group fa-fw</icon>
                   <action>SalaList</action>
               </menuitem>
+              <menuitem label='Docentes'>
+                  <icon>fa:id-card fa-fw</icon>
+                  <action>DocenteForm</action>
+              </menuitem>
         </menu>
     </menuitem>
     

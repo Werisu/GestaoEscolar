@@ -22,6 +22,25 @@ else
     $content = file_get_contents("app/templates/{$theme}/login.html");
 }
 
+/* Wellysson modificou */
+
+include_once './app/config/gestaoescolar.ini.php';
+
+
+$result = mysqli_query($conn, 'SELECT `file` FROM docente');
+while (($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) != NULL) {
+    
+    $file = $row['file'];
+    $content  = str_replace('{userfile}', ($file), $content);
+    
+}
+mysqli_free_result($result);
+
+
+mysqli_close($conn);
+
+#fim
+
 $content = str_replace('{IF-BUILDER}', '<!--', $content);
 $content = str_replace('{/IF-BUILDER}', '-->', $content);
 $content  = ApplicationTranslator::translateTemplate($content);
@@ -29,6 +48,7 @@ $content  = str_replace('{LIBRARIES}', file_get_contents("app/templates/{$theme}
 $content  = str_replace('{class}', $class, $content);
 $content  = str_replace('{template}', $theme, $content);
 $content  = str_replace('{username}', TSession::getValue('username'), $content);
+
 $content  = str_replace('{usermail}', TSession::getValue('usermail'), $content);
 $content  = str_replace('{frontpage}', TSession::getValue('frontpage'), $content);
 $content  = str_replace('{query_string}', $_SERVER["QUERY_STRING"], $content);
