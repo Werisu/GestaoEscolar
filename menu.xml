@@ -1,14 +1,18 @@
 <menu>
-    <menuitem label='Cadastros'>
+    <menuitem label='Servidor'>
         <icon>fa:cogs fa-fw</icon>
         <menu>
+              <menuitem label='Salas'>
+                  <icon>fa:group fa-fw</icon>
+                  <action>SalaList</action>
+              </menuitem>
               <menuitem label='Turmas'>
                   <icon>fa:group fa-fw</icon>
                   <action>TurmaList</action>
               </menuitem>
-              <menuitem label='Salas'>
-                  <icon>fa:group fa-fw</icon>
-                  <action>SalaList</action>
+              <menuitem label='Alunos'>
+                  <icon>fa:user-plus fa-fw</icon>
+                  <action>AlunoList</action>
               </menuitem>
               <menuitem label='Docentes'>
                   <icon>fa:id-card fa-fw</icon>

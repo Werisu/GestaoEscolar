@@ -29,7 +29,7 @@ class DocenteForm extends \Adianti\Control\TPage {
         $id->setSize('30%');
         $nome = new Adianti\Widget\Form\TEntry('nome');
         $nome->setSize('60%');
-        $cpf = new Adianti\Widget\Form\TEntry('cpf');
+        $cpf = new Adianti\Widget\Form\TEntry('cpf_docente');
         $cpf->setSize('30%');
         $rg = new Adianti\Widget\Form\TEntry('rg');
         $rg->setSize('30%');
@@ -40,14 +40,14 @@ class DocenteForm extends \Adianti\Control\TPage {
         $email = new Adianti\Widget\Form\TEntry('email');
         $sexo = new Adianti\Widget\Form\TCombo('sexo');
         $sexo->setSize('30%');
-        $estato_civil = new Adianti\Widget\Form\TEntry('estato_civil');
+        $estato_civil = new Adianti\Widget\Form\TEntry('estado_civil');
         $estato_civil->setSize('30%');
         $formacao = new Adianti\Widget\Form\TEntry('formacao');
         $formacao->setSize('30%');
         
         //componetes
-        $file      = new Adianti\Widget\Form\TFile('file');
-        $multifile = new Adianti\Widget\Form\TMultiFile('multifile');
+//        $file      = new Adianti\Widget\Form\TFile('file');
+//        $multifile = new Adianti\Widget\Form\TMultiFile('multifile');
         
         $combo_items = array();
         $combo_items['m'] ='Masculino';
@@ -69,10 +69,10 @@ class DocenteForm extends \Adianti\Control\TPage {
         $this->formulario->addFields([ new Adianti\Widget\Form\TLabel('Email') ],[$email]);
         
         //Componetes Upload de Imagens
-        $this->formulario->appendPage('File upload components');
-        $this->formulario->addContent( [new TFormSeparator('File components')] );
-        $this->formulario->addFields( [ new TLabel('TFile') ],      [ $file ] );
-        $this->formulario->addFields( [ new TLabel('TMultiFile') ], [ $multifile ] );
+//        $this->formulario->appendPage('File upload components');
+//        $this->formulario->addContent( [new TFormSeparator('File components')] );
+//        $this->formulario->addFields( [ new TLabel('TFile') ],      [ $file ] );
+//        $this->formulario->addFields( [ new TLabel('TMultiFile') ], [ $multifile ] );
         
         //Ações
         $this->formulario->addAction(_t('Save'), new TAction(array($this, 'onSave')), 'fa:floppy-o');

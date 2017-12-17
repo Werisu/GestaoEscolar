@@ -25,8 +25,8 @@ class TurmaList extends Adianti\Base\TStandardList{
         
         parent::setDatabase('gestao_escolar');            // defines the database
         parent::setActiveRecord('Turma');   // defines the active record
-        parent::setDefaultOrder('id', 'asc');         // defines the default order
-        parent::addFilterField('id', '=', 'id'); // filterField, operator, formField
+        parent::setDefaultOrder('idturma', 'asc');         // defines the default order
+        parent::addFilterField('idturma', '=', 'idturma'); // filterField, operator, formField
         parent::addFilterField('turno', 'like', 'turno'); // filterField, operator, formField
         parent::addFilterField('sala_idsala', 'like', 'sala_idsala'); // filterField, operator, formField
         
@@ -35,7 +35,7 @@ class TurmaList extends Adianti\Base\TStandardList{
         $this->form->setFormTitle('Turmas');
         
         // create the form fields
-        $id = new TEntry('id');
+        $id = new TEntry('idturma');
         $turno = new TEntry('turno');
         $sala = new TEntry('sala_idsala');
         
@@ -57,7 +57,7 @@ class TurmaList extends Adianti\Base\TStandardList{
         $this->datagrid->setHeight(320);
         
         // creates the datagrid columns
-        $column_id = new TDataGridColumn('id', 'Id', 'center', 50);
+        $column_id = new TDataGridColumn('idturma', 'Id', 'center', 50);
         $column_turno = new TDataGridColumn('turno', 'Turno', 'left');
         $column_sala = new TDataGridColumn('sala_idsala', 'Sala', 'left');
         
@@ -68,7 +68,7 @@ class TurmaList extends Adianti\Base\TStandardList{
         
         // creates the datagrid column actions
         $order_id = new TAction(array($this, 'onReload'));
-        $order_id->setParameter('order', 'id');
+        $order_id->setParameter('order', 'idturma');
         $column_id->setAction($order_id);
         
         $order_turno = new TAction(array($this, 'onReload'));
@@ -80,7 +80,7 @@ class TurmaList extends Adianti\Base\TStandardList{
         $action_edit->setButtonClass('btn btn-default');
         $action_edit->setLabel(_t('Edit'));
         $action_edit->setImage('fa:pencil-square-o blue fa-lg');
-        $action_edit->setField('id');
+        $action_edit->setField('idturma');
         $this->datagrid->addAction($action_edit);
         
         // create DELETE action
@@ -88,7 +88,7 @@ class TurmaList extends Adianti\Base\TStandardList{
         $action_del->setButtonClass('btn btn-default');
         $action_del->setLabel(_t('Delete'));
         $action_del->setImage('fa:trash-o red fa-lg');
-        $action_del->setField('id');
+        $action_del->setField('idturma');
         $this->datagrid->addAction($action_del);
         
         // create the datagrid model

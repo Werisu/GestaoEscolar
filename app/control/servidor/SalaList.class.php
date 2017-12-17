@@ -21,8 +21,8 @@ class SalaList extends Adianti\Base\TStandardList {
         
         parent::setDatabase('gestao_escolar');
         parent::setActiveRecord('Sala');
-        parent::setDefaultOrder('idSala', 'asc');
-        parent::addFilterField('idSala', '=', 'idSala');
+        parent::setDefaultOrder('idsala', 'asc');
+        parent::addFilterField('idsala', '=', 'idsala');
         parent::addFilterField('numero', 'like', 'numero');
         
         // criando o formulario
@@ -30,11 +30,11 @@ class SalaList extends Adianti\Base\TStandardList {
         $this->form->setFormTitle('Salas');
         
         // criando os campos do formulario
-        $idSala = new Adianti\Widget\Form\TEntry('idSala');
+        $idSala = new Adianti\Widget\Form\TEntry('idsala');
         $numero = new Adianti\Widget\Form\TEntry('numero');
         
         // adicionando os campos
-        $this->form->addFields([new \Adianti\Widget\Form\TLabel('idSala')], [$idSala]);
+        $this->form->addFields([new \Adianti\Widget\Form\TLabel('idsala')], [$idSala]);
         $this->form->addFields([new \Adianti\Widget\Form\TLabel('Numero da Sala')], [$numero]);
         
         $this->form->setData(Adianti\Registry\TSession::getValue('form_busca_sala'));
@@ -49,7 +49,7 @@ class SalaList extends Adianti\Base\TStandardList {
         $this->datagrid->setHeight(320);
         
         // creates the datagrid columns
-        $column_idSala = new TDataGridColumn('idSala', 'Id', 'center', 50);
+        $column_idSala = new TDataGridColumn('idsala', 'Id', 'center', 50);
         $column_numero = new TDataGridColumn('numero', 'Numero da Sala', 'left');
         
         // add the columns to the DataGrid
@@ -58,7 +58,7 @@ class SalaList extends Adianti\Base\TStandardList {
         
         // creates the datagrid column actions
         $order_id = new TAction(array($this, 'onReload'));
-        $order_id->setParameter('order', 'idSala');
+        $order_id->setParameter('order', 'idsala');
         $column_idSala->setAction($order_id);
         
         $order_numero = new TAction(array($this, 'onReload'));
@@ -70,7 +70,7 @@ class SalaList extends Adianti\Base\TStandardList {
         $action_edit->setButtonClass('btn btn-default');
         $action_edit->setLabel(_t('Edit'));
         $action_edit->setImage('fa:pencil-square-o blue fa-lg');
-        $action_edit->setField('idSala');
+        $action_edit->setField('idsala');
         $this->datagrid->addAction($action_edit);
         
         // create DELETE action
@@ -78,7 +78,7 @@ class SalaList extends Adianti\Base\TStandardList {
         $action_del->setButtonClass('btn btn-default');
         $action_del->setLabel(_t('Delete'));
         $action_del->setImage('fa:trash-o red fa-lg');
-        $action_del->setField('idSala');
+        $action_del->setField('idsala');
         $this->datagrid->addAction($action_del);
         
         // create the datagrid model

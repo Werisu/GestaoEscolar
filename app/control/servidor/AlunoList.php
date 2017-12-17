@@ -1,13 +1,13 @@
 <?php
 
 /**
- * A classe DocenteList.class.php lista os docentes cadastrados no sistema
+ * A classe AlunoList vai ser a classe mais complicada de se implementar, não sei se conseguirei.
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, Wellysson Nascimento Rocha
+ * @copyright (c) 2017, Wellysson Rocha
  * @version 1.0
  */
-class DocenteList extends \Adianti\Base\TStandardList {
+class AlunoList extends Adianti\Base\TStandardList {
     
     protected $form;
     protected $datagrid;
@@ -20,76 +20,76 @@ class DocenteList extends \Adianti\Base\TStandardList {
         parent::__construct();
         
         parent::setDatabase('gestao_escolar');
-        parent::setActiveRecord('Docente');
+        parent::setActiveRecord('Aluno');
         parent::setDefaultOrder('nome', 'asc');
-        parent::addFilterField('registro', '=', 'registro');
+        parent::addFilterField('matricula', '=', 'mastricula');
         parent::addFilterField('nome', 'like', 'nome');
         
         //Criando o formulario de busca
-        $this->form = new \Adianti\Wrapper\BootstrapFormBuilder('form_busca_docente');
-        $this->form->setFormTitle('Lista de Docentes');
+        $this->form = new Adianti\Wrapper\BootstrapFormBuilder('form_busca_aluno');
+        $this->form->setFormTitle('Lista de Alunos');
         
-        // criando os campos do formulario
-        $id = new Adianti\Widget\Form\TEntry('registro');
-        $nome = new Adianti\Widget\Form\TEntry('nome');
-        $output_type  = new TRadioGroup('output_type');
-
+        // Criando os campos do formulario
+        $matricula = new \Adianti\Widget\Form\TEntry('matricula');
+        $nome = new \Adianti\Widget\Form\TEntry('nome');
+        $output_type = new Adianti\Widget\Form\TRadioGroup('output_type');
+        
         $options = array('html' => 'HTML', 'pdf' => 'PDF', 'rtf' => 'RTF');
         $output_type->addItems($options);
         $output_type->setValue('pdf');
-        $output_type->setLayout('horizontal');
+        $output_type->setLayout('vertical');
         
-        // adicionando os campos
-        $this->form->addFields([new \Adianti\Widget\Form\TLabel('Registro')], [$id]);
-        $this->form->addFields([new \Adianti\Widget\Form\TLabel('Nome')], [$nome]);
-        $this->form->addFields( [ new Adianti\Widget\Form\TLabel('Output') ],[$output_type] );
+        // Adicionando os campos
+        $this->form->addFields([new Adianti\Widget\Form\TLabel('Matricula')], [$matricula]);
+        $this->form->addFields([new Adianti\Widget\Form\TLabel('Nome')], [$nome]);
+        $this->form->addFields([new Adianti\Widget\Form\TLabel('Output')], [$output_type]);
         
-        $this->form->setData(Adianti\Registry\TSession::getValue('form_busca_docente'));
+        $this->form->setData(Adianti\Registry\TSession::getValue('form_busca_aluno'));
         
         // Ações
-        $this->form->addAction(_t('Find'), new TAction(array($this, 'onSearch')), 'fa:search');
-        $this->form->addAction(_t('New'),  new TAction(array('DocenteForm', 'onEdit')), 'bs:plus-sign green');
+        $this->form->addAction(_t('Find'), new Adianti\Control\TAction(array($this,'onSearch')), 'fa:search');
+        $this->form->addAction(_t('New'), new Adianti\Control\TAction(array('AlunoForm', 'onEdit')), 'bs:plus-sign green');
         
-        // creates a DataGrid
-        $this->datagrid = new BootstrapDatagridWrapper(new TDataGrid);
+        // criando uma Tabela
+        $this->datagrid = new Adianti\Wrapper\BootstrapDatagridWrapper(new Adianti\Widget\Datagrid\TDataGrid);
         $this->datagrid->style = 'width: 100%';
         $this->datagrid->setHeight(320);
         
-        // creates the datagrid columns
-        $column_id = new TDataGridColumn('registro', 'Registro', 'center', 50);
-        $column_nome = new TDataGridColumn('nome', 'Nome', 'left');
-        $column_formacao = new TDataGridColumn('formacao', 'Formação', 'left');
-        $column_email = new TDataGridColumn('email', 'Email', 'left');
+        // criando as colunas da tabela
+        $column_matricula = new Adianti\Widget\Datagrid\TDataGridColumn('matricula', 'Matricula', 'center');
+        $column_nome = new \Adianti\Widget\Datagrid\TDataGridColumn('nome', 'Nome', 'left');
+        $column_cpf = new \Adianti\Widget\Datagrid\TDataGridColumn('cpf', 'CPF', 'left');
+        $column_email = new \Adianti\Widget\Datagrid\TDataGridColumn('email', 'Email', 'left');
         
-        // add the columns to the DataGrid
-        $this->datagrid->addColumn($column_id);
+        // Adicionando as colunas na tabela
+        $this->datagrid->addColumn($column_matricula);
         $this->datagrid->addColumn($column_nome);
+        $this->datagrid->addColumn($column_cpf);
         $this->datagrid->addColumn($column_email);
-        $this->datagrid->addColumn($column_formacao);
         
         // creates the datagrid column actions
-        $order_id = new TAction(array($this, 'onReload'));
-        $order_id->setParameter('order', 'registro');
-        $column_id->setAction($order_id);
+        $order_matricula = new Adianti\Control\TAction(array($this, 'onReload'));
+        $order_matricula->setParameter('order', 'matricula');
+        $column_matricula->setAction($order_matricula);
         
-        $order_numero = new TAction(array($this, 'onReload'));
-        $order_numero->setParameter('order', 'nome');
-        $column_nome->setAction($order_numero);
+        $order_nome = new Adianti\Control\TAction(array($this, 'onReload'));
+        $order_nome->setParameter('order', 'nome');
+        $column_nome->setAction($order_nome);
+        
+        $order_cpf = new Adianti\Control\TAction(array($this, 'onReload'));
+        $order_cpf->setParameter('order', 'cpf');
+        $column_cpf->setAction($order_cpf);
         
         $order_email = new TAction(array($this, 'onReload'));
         $order_email->setParameter('order', 'nome');
         $column_email->setAction($order_email);
         
-        $order_formacao = new TAction(array($this, 'onReload'));
-        $order_formacao->setParameter('order', 'nome');
-        $column_formacao->setAction($order_formacao);
-        
         // create EDIT action
-        $action_edit = new TDataGridAction(array('DocenteForm', 'onEdit'));
+        $action_edit = new TDataGridAction(array('AlunoForm', 'onEdit'));
         $action_edit->setButtonClass('btn btn-default');
         $action_edit->setLabel(_t('Edit'));
         $action_edit->setImage('fa:pencil-square-o blue fa-lg');
-        $action_edit->setField('registro');
+        $action_edit->setField('matricula');
         $this->datagrid->addAction($action_edit);
         
         // create DELETE action
@@ -97,12 +97,12 @@ class DocenteList extends \Adianti\Base\TStandardList {
         $action_del->setButtonClass('btn btn-default');
         $action_del->setLabel(_t('Delete'));
         $action_del->setImage('fa:trash-o red fa-lg');
-        $action_del->setField('registro');
+        $action_del->setField('matricula');
         $this->datagrid->addAction($action_del);
         
         $this->form->addAction( 'Gerar', new TAction(array($this, 'onGenerate')), 'fa:download blue');
-                
-        // create the datagrid model
+        
+        //create the datagrid model
         $this->datagrid->createModel();
         
         // vertical box container
@@ -117,8 +117,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
         
     }
     
-    function onGenerate()
-    {
+    function onGenerate(){
         try
         {
             // open a transaction with database 'samples'
@@ -127,11 +126,11 @@ class DocenteList extends \Adianti\Base\TStandardList {
             // get the form data into an active record Customer
             $object = $this->form->getData();
             
-            $repository = new TRepository('Docente');
+            $repository = new TRepository('Aluno');
             $criteria   = new TCriteria;
-            if ($object->registro)
+            if ($object->matricula)
             {
-                $criteria->add(new TFilter('registro', 'like', "%{$object->registro}%"));
+                $criteria->add(new TFilter('matricula', 'like', "%{$object->registro}%"));
             }
             
             if ($object->nome)
@@ -144,7 +143,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
             
             if ($customers)
             {
-                $widths = array(40, 150, 180, 120, 80);
+                $widths = array(80, 150, 180, 120, 80);
                 
                 switch ($format)
                 {
@@ -174,15 +173,15 @@ class DocenteList extends \Adianti\Base\TStandardList {
                     
                     // add a header row
                     $tr->addRow();
-                    $tr->addCell('Docente', 'center', 'header', 5);
+                    $tr->addCell('Aluno', 'center', 'header', 5);
                     
                     // add titles row
                     $tr->addRow();
-                    $tr->addCell('Registro',      'left', 'title');
+                    $tr->addCell('Matricula',      'left', 'title');
                     $tr->addCell('Nome',      'left', 'title');
-                    $tr->addCell('Formação',  'left', 'title');
+                    $tr->addCell('CPF',  'left', 'title');
                     $tr->addCell('Email',     'left', 'title');
-                    $tr->addCell('CPF', 'left', 'title');
+                    $tr->addCell('Turma', 'left', 'title');
                     
                     // controls the background filling
                     $colour= FALSE;
@@ -192,11 +191,11 @@ class DocenteList extends \Adianti\Base\TStandardList {
                     {
                         $style = $colour ? 'datap' : 'datai';
                         $tr->addRow();
-                        $tr->addCell($customer->registro,                 'left', $style);
+                        $tr->addCell($customer->matricula,                 'left', $style);
                         $tr->addCell($customer->nome,               'left', $style);
-                        $tr->addCell($customer->formacao    ,  'left', $style);
+                        $tr->addCell($customer->cpf    ,  'left', $style);
                         $tr->addCell($customer->email,              'left', $style);
-                        $tr->addCell($customer->cpf_docente,          'left', $style);
+                        $tr->addCell($customer->turma_idturma,          'left', $style);
                         
                         $colour = !$colour;
                     }

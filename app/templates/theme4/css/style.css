@@ -7476,7 +7476,7 @@ fieldset[disabled] .form-control {
     background: url("../images/download.jpg") no-repeat no-repeat;
     height: 135px; }
     .sidebar .user-info .image {
-      margin-right: 12px;
+      margin-right: 20px;
       display: inline-block; }
       .sidebar .user-info .image img {
         -webkit-border-radius: 50%;

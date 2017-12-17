@@ -20,7 +20,7 @@ class TurmaForm extends \Adianti\Control\TPage {
         $this->form = new BootstrapFormBuilder('form_turma');
         $this->form->setFormTitle('Cadastro de Turmas');
         
-        $id = new \Adianti\Widget\Form\TEntry('id');
+        $id = new \Adianti\Widget\Form\TEntry('idturma');
         $turno = new \Adianti\Widget\Form\TEntry('turno');
         $sala = new \Adianti\Widget\Form\TCombo('sala_idsala');
         $file      = new TFile('file');
@@ -38,7 +38,7 @@ class TurmaForm extends \Adianti\Control\TPage {
             die("Connection failed: " . $conn->connect_error);
         } 
 
-        $sql = "SELECT idSala FROM Sala";
+        $sql = "SELECT idsala FROM Sala";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -46,7 +46,7 @@ class TurmaForm extends \Adianti\Control\TPage {
             $combo_items = array();
             while($row = $result->fetch_assoc()) {
                 #echo "id: " . $row["idSala"]. "<br>";
-                $combo_items[$row["idSala"]] =$row["idSala"];
+                $combo_items[$row["idsala"]] =$row["idsala"];
             }
         } else {
             echo "0 results";
@@ -106,11 +106,11 @@ class TurmaForm extends \Adianti\Control\TPage {
     
     public function onEdit($param) {
         try{
-            if(array_key_exists('id', $param)){
+            if(array_key_exists('idturma', $param)){
                 
             
             TTransaction::open('gestao_escolar');
-            $turno = new Turma($param['id']);
+            $turno = new Turma($param['idturma']);
             TTransaction::close();
             $this->form->setData($turno);
             }else{
@@ -129,11 +129,11 @@ class TurmaForm extends \Adianti\Control\TPage {
     
     public function onDelete($param) {
         try{
-            if(array_key_exists('id', $param)){
+            if(array_key_exists('idturma', $param)){
                 
             
             TTransaction::open('gestao_escolar');
-            $turno = new OsStatus($param['id']);
+            $turno = new OsStatus($param['idturma']);
             $turno->delete();
             TTransaction::close();
             $this->form->setData($turno);

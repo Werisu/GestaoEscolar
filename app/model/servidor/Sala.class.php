@@ -11,13 +11,13 @@ class Sala extends \Adianti\Database\TRecord {
     //put your code here
     
     const TABLENAME = 'sala';
-    const PRIMARYKEY = 'idSala';
+    const PRIMARYKEY = 'idsala';
     const IDPOLICY = 'max';
     
     public function __construct($idSala = NULL) {
         parent::__construct($idSala);
         
-        parent::addAttribute('idSala');
+        parent::addAttribute('idsala');
         parent::addAttribute('numero');
     }
 }

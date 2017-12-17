@@ -17,7 +17,7 @@ class SalaForm extends \Adianti\Control\TPage {
         $this->form = new \Adianti\Wrapper\BootstrapFormBuilder('form_sala');
         $this->form->setFormTitle('Cadastro de Salas');
         
-        $id = new Adianti\Widget\Form\TEntry('idSala');
+        $id = new Adianti\Widget\Form\TEntry('idsala');
         $id->setEditable(FALSE);
         $id->setSize('30%');
         
@@ -59,11 +59,11 @@ class SalaForm extends \Adianti\Control\TPage {
     
     public function onEdit($param){
         try{
-            if(array_key_exists('idSala', $param)){
+            if(array_key_exists('idsala', $param)){
                 
             
             TTransaction::open('gestao_escolar');
-            $status = new Sala($param['idSala']);
+            $status = new Sala($param['idsala']);
             TTransaction::close();
             $this->form->setData($status);
             }else{
@@ -82,11 +82,11 @@ class SalaForm extends \Adianti\Control\TPage {
     
     public function onDelete($param) {
         try{
-            if(array_key_exists('idSala', $param)){
+            if(array_key_exists('idsala', $param)){
                 
             
             TTransaction::open('gestao_escolar');
-            $status = new Sala($param['idSala']);
+            $status = new Sala($param['idsala']);
             $status->delete();
             TTransaction::close();
             $this->form->setData($status);
