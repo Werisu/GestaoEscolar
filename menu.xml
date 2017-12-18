@@ -18,6 +18,10 @@
                   <icon>fa:id-card fa-fw</icon>
                   <action>DocenteList</action>
               </menuitem>
+              <menuitem label='Disciplina'>
+                  <icon>fa:graduation-cap fa-fw</icon>
+                  <action>DisciplinaList</action>
+              </menuitem>
         </menu>
     </menuitem>
     

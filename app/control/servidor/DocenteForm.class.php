@@ -25,7 +25,7 @@ class DocenteForm extends \Adianti\Control\TPage {
         $this->formulario->appendPage('Page 1');
         $this->formulario->addContent( [$label1] );
         
-        $id = new Adianti\Widget\Form\TEntry('registro');
+        $id = new Adianti\Widget\Form\TEntry('iddocente');
         $id->setSize('30%');
         $nome = new Adianti\Widget\Form\TEntry('nome');
         $nome->setSize('60%');
@@ -107,11 +107,11 @@ class DocenteForm extends \Adianti\Control\TPage {
     
     public function onEdit($param){
         try{
-            if(array_key_exists('registro', $param)){
+            if(array_key_exists('iddocente', $param)){
                 
             
             TTransaction::open('gestao_escolar');
-            $status = new Docente($param['registro']);
+            $status = new Docente($param['iddocente']);
             TTransaction::close();
             $this->formulario->setData($status);
             }else{
@@ -130,11 +130,11 @@ class DocenteForm extends \Adianti\Control\TPage {
     
     public function onDelete($param) {
         try{
-            if(array_key_exists('registro', $param)){
+            if(array_key_exists('iddocente', $param)){
                 
             
             TTransaction::open('gestao_escolar');
-            $status = new Docente($param['registro']);
+            $status = new Docente($param['iddocente']);
             $status->delete();
             TTransaction::close();
             $this->formulario->setData($status);

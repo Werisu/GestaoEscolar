@@ -24,6 +24,7 @@ class AlunoList extends Adianti\Base\TStandardList {
         parent::setDefaultOrder('nome', 'asc');
         parent::addFilterField('matricula', '=', 'mastricula');
         parent::addFilterField('nome', 'like', 'nome');
+        parent::addFilterField('turma_idturma', 'like', 'turma_idturma');
         
         //Criando o formulario de busca
         $this->form = new Adianti\Wrapper\BootstrapFormBuilder('form_busca_aluno');
@@ -32,6 +33,7 @@ class AlunoList extends Adianti\Base\TStandardList {
         // Criando os campos do formulario
         $matricula = new \Adianti\Widget\Form\TEntry('matricula');
         $nome = new \Adianti\Widget\Form\TEntry('nome');
+        $turma = new \Adianti\Widget\Form\TCombo('turma_idturma');
         $output_type = new Adianti\Widget\Form\TRadioGroup('output_type');
         
         $options = array('html' => 'HTML', 'pdf' => 'PDF', 'rtf' => 'RTF');
@@ -39,9 +41,40 @@ class AlunoList extends Adianti\Base\TStandardList {
         $output_type->setValue('pdf');
         $output_type->setLayout('vertical');
         
+        // Array ForeKey
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "g_e";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+
+        $sql = "SELECT turma_idturma FROM g_e.aluno;";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            $combo_items = array();
+            while($row = $result->fetch_assoc()) {
+                #echo "id: " . $row["idSala"]. "<br>";
+                $combo_items[$row["turma_idturma"]] =$row["turma_idturma"];
+            }
+        } else {
+            echo "0 results";
+        }
+        $conn->close();
+                
+        $turma->addItems($combo_items);
+        
         // Adicionando os campos
         $this->form->addFields([new Adianti\Widget\Form\TLabel('Matricula')], [$matricula]);
         $this->form->addFields([new Adianti\Widget\Form\TLabel('Nome')], [$nome]);
+        $this->form->addFields([new Adianti\Widget\Form\TLabel('Turma')], [$turma]);
         $this->form->addFields([new Adianti\Widget\Form\TLabel('Output')], [$output_type]);
         
         $this->form->setData(Adianti\Registry\TSession::getValue('form_busca_aluno'));
@@ -60,12 +93,14 @@ class AlunoList extends Adianti\Base\TStandardList {
         $column_nome = new \Adianti\Widget\Datagrid\TDataGridColumn('nome', 'Nome', 'left');
         $column_cpf = new \Adianti\Widget\Datagrid\TDataGridColumn('cpf', 'CPF', 'left');
         $column_email = new \Adianti\Widget\Datagrid\TDataGridColumn('email', 'Email', 'left');
+        $column_turma = new \Adianti\Widget\Datagrid\TDataGridColumn('turma_idturma', 'Turma', 'left');
         
         // Adicionando as colunas na tabela
         $this->datagrid->addColumn($column_matricula);
         $this->datagrid->addColumn($column_nome);
         $this->datagrid->addColumn($column_cpf);
         $this->datagrid->addColumn($column_email);
+        $this->datagrid->addColumn($column_turma);
         
         // creates the datagrid column actions
         $order_matricula = new Adianti\Control\TAction(array($this, 'onReload'));
@@ -83,6 +118,10 @@ class AlunoList extends Adianti\Base\TStandardList {
         $order_email = new TAction(array($this, 'onReload'));
         $order_email->setParameter('order', 'nome');
         $column_email->setAction($order_email);
+        
+        $order_turma = new \Adianti\Control\TAction(array($this, 'onReload'));
+        $order_turma->setParameter('order', 'turma_idturma');
+        $column_turma->setAction($order_turma);
         
         // create EDIT action
         $action_edit = new TDataGridAction(array('AlunoForm', 'onEdit'));
@@ -105,10 +144,15 @@ class AlunoList extends Adianti\Base\TStandardList {
         //create the datagrid model
         $this->datagrid->createModel();
         
+        // create the page navigation
+        $this->pageNavigation = new TPageNavigation;
+        $this->pageNavigation->setAction(new TAction(array($this, 'onReload')));
+        $this->pageNavigation->setWidth($this->datagrid->getWidth());
+        
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 90%';
-        #$container->add(new TXMLBreadCrumb('menu.xml', __CLASS__));
+        $container->add(new TXMLBreadCrumb('menu.xml', __CLASS__));
         $container->add($this->form);
         $container->add(TPanelGroup::pack('', $this->datagrid));
         $container->add($this->pageNavigation);
@@ -130,7 +174,7 @@ class AlunoList extends Adianti\Base\TStandardList {
             $criteria   = new TCriteria;
             if ($object->matricula)
             {
-                $criteria->add(new TFilter('matricula', 'like', "%{$object->registro}%"));
+                $criteria->add(new TFilter('matricula', 'like', "%{$object->matricula}%"));
             }
             
             if ($object->nome)

@@ -10,13 +10,13 @@
 class Docente extends Adianti\Database\TRecord {
     
     const TABLENAME = 'docente';
-    const PRIMARYKEY = 'registro';
+    const PRIMARYKEY = 'iddocente';
     const IDPOLICY = 'max';
     
     public function __construct($id = NULL, $callObjectLoad = TRUE) {
         parent::__construct($id, $callObjectLoad);
         
-        parent::addAttribute('registro');
+        parent::addAttribute('iddocente');
         parent::addAttribute('nome');
         parent::addAttribute('cpf_docente');
         parent::addAttribute('rg');

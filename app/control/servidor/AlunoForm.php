@@ -92,7 +92,7 @@ class AlunoForm extends Adianti\Control\TPage {
         
         //Ações
         $this->form->addAction(_t('Save'), new TAction(array($this, 'onSave')), 'fa:floppy-o');
-        #$this->formulario->addAction(_t('Back to the listing'), new TAction(array('DocenteList','onReload')), 'fa:table blue');
+        $this->form->addAction(_t('Back to the listing'), new TAction(array('AlunoList','onReload')), 'fa:table blue');
         $this->form->addAction(_t('New'),  new TAction(array($this, 'onClear')), 'fa:eraser red');
         $this->form->addAction(_t('Delete'),  new TAction(array($this, 'onDelete')), 'fa:trash-o red fa-lg');
         
@@ -128,7 +128,7 @@ class AlunoForm extends Adianti\Control\TPage {
                 
             
             TTransaction::open('gestao_escolar');
-            $status = new Docente($param['matricula']);
+            $status = new Aluno($param['matricula']);
             TTransaction::close();
             $this->form->setData($status);
             }else{
@@ -136,7 +136,7 @@ class AlunoForm extends Adianti\Control\TPage {
             }
         } catch (Exception $ex) {
             new TMessage('error', $ex->getMessage());
-            $this->formulario->setData( $this->formulario->getData() ); //error
+            $this->form->setData( $this->form->getData() ); //error
             TTransaction::rollback();
         }
     }
@@ -151,7 +151,7 @@ class AlunoForm extends Adianti\Control\TPage {
                 
             
             TTransaction::open('gestao_escolar');
-            $status = new Docente($param['matricula']);
+            $status = new Aluno($param['matricula']);
             $status->delete();
             TTransaction::close();
             $this->formulario->setData($status);

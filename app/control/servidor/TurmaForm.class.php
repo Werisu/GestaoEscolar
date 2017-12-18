@@ -29,7 +29,7 @@ class TurmaForm extends \Adianti\Control\TPage {
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "gestao_escolar";
+        $dbname = "g_e";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -70,12 +70,9 @@ class TurmaForm extends \Adianti\Control\TPage {
         
         // Ações do adiante
         $this->form->addAction(_t('Save'), new TAction(array($this, 'onSave')), 'fa:floppy-o');
-        #$salvar = new Adianti\Control\TAction( array($this, 'onSave'));
-        #$this->form->addQuickAction('Salvar', $salvar, 'ico_save.png');
-        
         $this->form->addAction(_t('Back to the listing'), new TAction(array('TurmaList','onReload')), 'fa:table blue');
-        #$listar = new Adianti\Control\TAction(array('TurmaList','onReload'));
-        #$this->form->addQuickAction('Listar', $listar, 'ico_datagrid.png');
+        $this->form->addAction(_t('New'),  new TAction(array($this, 'onClear')), 'fa:eraser red');
+        $this->form->addAction(_t('Delete'),  new TAction(array($this, 'onDelete')), 'fa:trash-o red fa-lg');
         
         $container = new TVBox();
         $container->style = 'width: 90%';

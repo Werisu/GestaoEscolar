@@ -22,7 +22,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
         parent::setDatabase('gestao_escolar');
         parent::setActiveRecord('Docente');
         parent::setDefaultOrder('nome', 'asc');
-        parent::addFilterField('registro', '=', 'registro');
+        parent::addFilterField('iddocente', '=', 'iddocente');
         parent::addFilterField('nome', 'like', 'nome');
         
         //Criando o formulario de busca
@@ -30,7 +30,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
         $this->form->setFormTitle('Lista de Docentes');
         
         // criando os campos do formulario
-        $id = new Adianti\Widget\Form\TEntry('registro');
+        $id = new Adianti\Widget\Form\TEntry('iddocente');
         $nome = new Adianti\Widget\Form\TEntry('nome');
         $output_type  = new TRadioGroup('output_type');
 
@@ -56,7 +56,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
         $this->datagrid->setHeight(320);
         
         // creates the datagrid columns
-        $column_id = new TDataGridColumn('registro', 'Registro', 'center', 50);
+        $column_id = new TDataGridColumn('iddocente', 'Registro', 'center', 50);
         $column_nome = new TDataGridColumn('nome', 'Nome', 'left');
         $column_formacao = new TDataGridColumn('formacao', 'Formação', 'left');
         $column_email = new TDataGridColumn('email', 'Email', 'left');
@@ -69,7 +69,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
         
         // creates the datagrid column actions
         $order_id = new TAction(array($this, 'onReload'));
-        $order_id->setParameter('order', 'registro');
+        $order_id->setParameter('order', 'iddocente');
         $column_id->setAction($order_id);
         
         $order_numero = new TAction(array($this, 'onReload'));
@@ -89,7 +89,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
         $action_edit->setButtonClass('btn btn-default');
         $action_edit->setLabel(_t('Edit'));
         $action_edit->setImage('fa:pencil-square-o blue fa-lg');
-        $action_edit->setField('registro');
+        $action_edit->setField('iddocente');
         $this->datagrid->addAction($action_edit);
         
         // create DELETE action
@@ -97,13 +97,18 @@ class DocenteList extends \Adianti\Base\TStandardList {
         $action_del->setButtonClass('btn btn-default');
         $action_del->setLabel(_t('Delete'));
         $action_del->setImage('fa:trash-o red fa-lg');
-        $action_del->setField('registro');
+        $action_del->setField('iddocente');
         $this->datagrid->addAction($action_del);
         
         $this->form->addAction( 'Gerar', new TAction(array($this, 'onGenerate')), 'fa:download blue');
                 
         // create the datagrid model
         $this->datagrid->createModel();
+        
+        // create the page navigation
+        $this->pageNavigation = new TPageNavigation;
+        $this->pageNavigation->setAction(new TAction(array($this, 'onReload')));
+        $this->pageNavigation->setWidth($this->datagrid->getWidth());
         
         // vertical box container
         $container = new TVBox;
@@ -129,9 +134,9 @@ class DocenteList extends \Adianti\Base\TStandardList {
             
             $repository = new TRepository('Docente');
             $criteria   = new TCriteria;
-            if ($object->registro)
+            if ($object->iddocente)
             {
-                $criteria->add(new TFilter('registro', 'like', "%{$object->registro}%"));
+                $criteria->add(new TFilter('iddocente', 'like', "%{$object->iddocente}%"));
             }
             
             if ($object->nome)
@@ -192,7 +197,7 @@ class DocenteList extends \Adianti\Base\TStandardList {
                     {
                         $style = $colour ? 'datap' : 'datai';
                         $tr->addRow();
-                        $tr->addCell($customer->registro,                 'left', $style);
+                        $tr->addCell($customer->iddocente,                 'left', $style);
                         $tr->addCell($customer->nome,               'left', $style);
                         $tr->addCell($customer->formacao    ,  'left', $style);
                         $tr->addCell($customer->email,              'left', $style);

@@ -1,6 +1,6 @@
 
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'gestao_escolar');
+$conn = mysqli_connect('localhost', 'root', '', 'g_e');
 if (!$conn) {
     die('Could not connect to MySQL: ' . mysqli_connect_error());
 }
