@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Docente.class.php
+ * A classe Docente.class.php é uma classes de modelo da aplicação do controle de Docentes.
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, Wellysson Rocha
+ * @copyright (c) 2017, Wellysson Rocha <wellysson35@gmail.com>
  * @version 1.0
  */
 class Docente extends Adianti\Database\TRecord {

@@ -3,10 +3,10 @@
 
 
 /**
- * A classe TurmaForm.class.php vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe TurmaForm.class.php é uma classe controladora da aplicação Turmas.class.php
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, John Doe
+ * @copyright (c) 2017, Wellysson Nascimento Rocha
  * @version 1.0
  */
 class TurmaForm extends \Adianti\Control\TPage {

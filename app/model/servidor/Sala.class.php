@@ -1,10 +1,10 @@
 <?php
 
 /**
- * A classe Pessoa.class.php vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe Sala.class.php é uma classes de modelo da aplicação do controle de Salas.
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, John Doe
+ * @copyright (c) 2017, Wellysson Rocha <wellysson35@gmail.com>
  * @version 1.0
  */
 class Sala extends \Adianti\Database\TRecord {

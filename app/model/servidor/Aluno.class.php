@@ -1,14 +1,14 @@
 <?php
 
 /**
- * A classe Aluno vai ser usada para implementar o AlunoForm e AlunoList
+ * A classe Aluno.class.php é uma Classes de modelo da aplicação
  *
  * @author Wellysson Rocha
  * @copyright (c) 2017, Wellysson Rocha
  * @version 1.0
  */
 class Aluno extends Adianti\Database\TRecord {
-    //put your code here
+    //códigos
     
     const TABLENAME = 'aluno';
     const PRIMARYKEY = 'matricula';

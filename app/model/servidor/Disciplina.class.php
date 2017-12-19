@@ -1,10 +1,10 @@
 <?php
 
 /**
- * A classe Disciplina vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe Disciplina é uma classes de modelo da aplicação do controle de Disciplinas.
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, Wellysson Rocha
+ * @copyright (c) 2017, Wellysson Rocha <wellysson35@gmail.com>
  * @version 1.0
  */
 class Disciplina extends Adianti\Database\TRecord {
