@@ -1,7 +1,13 @@
 <!--[main]-->
-<h4>
-Bem Vindo:
-</h4>
+<div class="jumbotron">
+  <h1 class="display-3">Bem Vindo</h1>
+  <p class="lead">Agora você poderá cadastrar salas, turmas, alunos, professores e disciplinas.</p>
+  <hr class="my-4">
+  <p>Ele usa classes de utilidade para tipografia e espaçamento para o conteúdo do espaço dentro do recipiente maior.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+</div>
 <ul class="list-group">
   <li class="list-group-item">{$matricula} Alunos Cadastrados.</li>
   <li class="list-group-item">{$docentes} Docentes Cadastrados.</li>
@@ -10,4 +16,570 @@ Bem Vindo:
   <li class="list-group-item">{$disciplinas} Disciplinas Cadastradas.</li>
   <li class="list-group-item">Realize um logout e um login com algum usuário com permissão para rodar o programa criado;</li>
 </ul>
+<hr>
+
+<div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-primary">
+        <div class="card-body pb-0">
+          <div class="btn-group float-right">
+            <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-male" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="index.php?class=AlunoList">Listar</a>
+              <a class="dropdown-item" href="index.php?class=AlunoForm">Novo</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+          <h4 class="mb-0">{$matricula}</h4>
+          <p>Alunos Matriculados</p>
+        </div>
+        <div class="chart-wrapper px-3" style="height:0px;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <canvas id="card-chart1" class="chart chartjs-render-monitor" height="70" width="234" style="display: block;"></canvas>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-info">
+        <div class="card-body pb-0">
+          <button type="button" class="btn btn-transparent p-0 float-right">
+            <i class="fa fa-id-card-o" aria-hidden="true"></i>
+          </button>
+          <h4 class="mb-0">{$docentes}</h4>
+          <p>Docentes Registrados</p>
+        </div>
+        <div class="chart-wrapper px-3" style="height:0px;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <canvas id="card-chart2" class="chart chartjs-render-monitor" height="70" width="234" style="display: block;"></canvas>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-warning">
+        <div class="card-body pb-0">
+          <div class="btn-group float-right">
+            <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-book" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+          <h4 class="mb-0">{$salas}</h4>
+          <p>Salas</p>
+        </div>
+        <div class="chart-wrapper" style="height:0px;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <canvas id="card-chart3" class="chart chartjs-render-monitor" height="70" width="266" style="display: block;"></canvas>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-danger">
+        <div class="card-body pb-0">
+          <div class="btn-group float-right">
+            <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-users" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+          <h4 class="mb-0">{$turmas}</h4>
+          <p>Turmas</p>
+        </div>
+        <div class="chart-wrapper px-3" style="height:0px;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <canvas id="card-chart4" class="chart chartjs-render-monitor" height="70" width="234" style="display: block;"></canvas>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+
+<div class="container-fluid">
+<div id="ui-view" style="opacity: 1;"><script>
+  var requireJS = [];
+  loadJS(requireJS, "js/views/main.js");
+</script>
+
+<div class="animated fadeIn">
+
+  <div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <div class="social-box facebook">
+        <i class="fa fa-facebook"></i>
+        <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <canvas id="social-box-chart-1" height="90" width="266" class="chartjs-render-monitor" style="display: block;"></canvas>
+        </div>
+        <ul>
+          <li>
+            <strong>89k</strong>
+            <span>friends</span>
+          </li>
+          <li>
+            <strong>459</strong>
+            <span>feeds</span>
+          </li>
+        </ul>
+      </div>
+      <!--/.social-box-->
+    </div>
+    <!--/.col-->
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="social-box twitter">
+        <i class="fa fa-twitter"></i>
+        <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <canvas id="social-box-chart-2" height="90" width="266" class="chartjs-render-monitor" style="display: block;"></canvas>
+        </div>
+        <ul>
+          <li>
+            <strong>973k</strong>
+            <span>followers</span>
+          </li>
+          <li>
+            <strong>1.792</strong>
+            <span>tweets</span>
+          </li>
+        </ul>
+      </div>
+      <!--/.social-box-->
+    </div>
+    <!--/.col-->
+
+    <div class="col-sm-6 col-lg-3">
+
+      <div class="social-box linkedin">
+        <i class="fa fa-linkedin"></i>
+        <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <canvas id="social-box-chart-3" height="90" width="266" class="chartjs-render-monitor" style="display: block;"></canvas>
+        </div>
+        <ul>
+          <li>
+            <strong>500+</strong>
+            <span>contacts</span>
+          </li>
+          <li>
+            <strong>292</strong>
+            <span>feeds</span>
+          </li>
+        </ul>
+      </div>
+      <!--/.social-box-->
+    </div>
+    <!--/.col-->
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="social-box google-plus">
+        <i class="fa fa-google-plus"></i>
+        <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <canvas id="social-box-chart-4" height="90" width="266" class="chartjs-render-monitor" style="display: block;"></canvas>
+        </div>
+        <ul>
+          <li>
+            <strong>894</strong>
+            <span>followers</span>
+          </li>
+          <li>
+            <strong>92</strong>
+            <span>circles</span>
+          </li>
+        </ul>
+      </div>
+      <!--/.social-box-->
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Traffic &amp; Sales
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12 col-lg-4">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="callout callout-info">
+                    <small class="text-muted">New Clients</small>
+                    <br>
+                    <strong class="h4">9,123</strong>
+                    <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                      <canvas id="sparkline-chart-1" width="79" height="23" class="chartjs-render-monitor" style="display: block; width: 79px; height: 23px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <!--/.col-->
+                <div class="col-sm-6">
+                  <div class="callout callout-danger">
+                    <small class="text-muted">Recuring Clients</small>
+                    <br>
+                    <strong class="h4">22,643</strong>
+                    <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                      <canvas id="sparkline-chart-2" width="79" height="23" class="chartjs-render-monitor" style="display: block; width: 79px; height: 23px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <!--/.col-->
+              </div>
+              <!--/.row-->
+              <hr class="mt-0">
+              <ul class="horizontal-bars">
+                <li>
+                  <div class="title">
+                    Monday
+                  </div>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    Tuesday
+                  </div>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    Wednesday
+                  </div>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    Thursday
+                  </div>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 91%" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    Friday
+                  </div>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 73%" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    Saturday
+                  </div>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 53%" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    Sunday
+                  </div>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 9%" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li class="legend">
+                  <span class="badge badge-pill badge-info"></span>
+                  <small>New clients</small> &nbsp;
+                  <span class="badge badge-pill badge-danger"></span>
+                  <small>Recurring clients</small>
+                </li>
+              </ul>
+            </div>
+            <!--/.col-->
+            <div class="col-sm-6 col-lg-4">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="callout callout-warning">
+                    <small class="text-muted">Pageviews</small>
+                    <br>
+                    <strong class="h4">78,623</strong>
+                    <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                      <canvas id="sparkline-chart-3" width="79" height="23" class="chartjs-render-monitor" style="display: block; width: 79px; height: 23px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <!--/.col-->
+                <div class="col-sm-6">
+                  <div class="callout callout-success">
+                    <small class="text-muted">Organic</small>
+                    <br>
+                    <strong class="h4">49,123</strong>
+                    <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                      <canvas id="sparkline-chart-4" width="79" height="23" class="chartjs-render-monitor" style="display: block; width: 79px; height: 23px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <!--/.col-->
+              </div>
+              <!--/.row-->
+              <hr class="mt-0">
+              <ul class="horizontal-bars type-2">
+                <li>
+                  <i class="fa fa-male" aria-hidden="true"></i>
+                  <span class="title">Male</span>
+                  <span class="value">43%</span>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <i class="fa fa-female" aria-hidden="true"></i>
+                  <span class="title">Female</span>
+                  <span class="value">37%</span>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: 37%" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <i class="fa fa-globe" aria-hidden="true"></i>
+                  <span class="title">Organic Search</span>
+                  <span class="value">191,235
+                    <span class="text-muted small">(56%)</span>
+                  </span>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                  <span class="title">Facebook</span>
+                  <span class="value">51,223
+                    <span class="text-muted small">(15%)</span>
+                  </span>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                  <span class="title">Twitter</span>
+                  <span class="value">37,564
+                    <span class="text-muted small">(11%)</span>
+                  </span>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                  <span class="title">LinkedIn</span>
+                  <span class="value">27,319
+                    <span class="text-muted small">(8%)</span>
+                  </span>
+                  <div class="bars">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+                <li class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="show more"><i class="icon-options"></i></button>
+                </li>
+              </ul>
+            </div>
+            <!--/.col-->
+            <div class="col-sm-6 col-lg-4">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="callout">
+                    <small class="text-muted">CTR</small>
+                    <br>
+                    <strong class="h4">23%</strong>
+                    <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                      <canvas id="sparkline-chart-5" width="79" height="23" class="chartjs-render-monitor" style="display: block; width: 79px; height: 23px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <!--/.col-->
+                <div class="col-sm-6">
+                  <div class="callout callout-primary">
+                    <small class="text-muted">Bounce Rate</small>
+                    <br>
+                    <strong class="h4">5%</strong>
+                    <div class="chart-wrapper"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                      <canvas id="sparkline-chart-6" width="79" height="23" class="chartjs-render-monitor" style="display: block; width: 79px; height: 23px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <!--/.col-->
+              </div>
+              <!--/.row-->
+              <hr class="mt-0">
+              <ul class="icons-list">
+                <li>
+                  <i class="icon-screen-desktop bg-primary"></i>
+                  <div class="desc">
+                    <div class="title">iMac 4k</div>
+                    <small>Lorem ipsum dolor sit amet</small>
+                  </div>
+                  <div class="value">
+                    <div class="small text-muted">Sold this week</div>
+                    <strong>1.924</strong>
+                  </div>
+                  <div class="actions">
+                    <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
+                  </div>
+                </li>
+                <li>
+                  <i class="icon-screen-smartphone bg-info"></i>
+                  <div class="desc">
+                    <div class="title">Samsung Galaxy Edge</div>
+                    <small>Lorem ipsum dolor sit amet</small>
+                  </div>
+                  <div class="value">
+                    <div class="small text-muted">Sold this week</div>
+                    <strong>1.224</strong>
+                  </div>
+                  <div class="actions">
+                    <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
+                  </div>
+                </li>
+                <li>
+                  <i class="icon-screen-smartphone bg-warning"></i>
+                  <div class="desc">
+                    <div class="title">iPhone 6S</div>
+                    <small>Lorem ipsum dolor sit amet</small>
+                  </div>
+                  <div class="value">
+                    <div class="small text-muted">Sold this week</div>
+                    <strong>1.163</strong>
+                  </div>
+                  <div class="actions">
+                    <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
+                  </div>
+                </li>
+                <li>
+                  <i class="icon-user bg-danger"></i>
+                  <div class="desc">
+                    <div class="title">Premium accounts</div>
+                    <small>Lorem ipsum dolor sit amet</small>
+                  </div>
+                  <div class="value">
+                    <div class="small text-muted">Sold this week</div>
+                    <strong>928</strong>
+                  </div>
+                  <div class="actions">
+                    <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
+                  </div>
+                </li>
+                <li>
+                  <i class="icon-social-spotify bg-success"></i>
+                  <div class="desc">
+                    <div class="title">Spotify Subscriptions</div>
+                    <small>Lorem ipsum dolor sit amet</small>
+                  </div>
+                  <div class="value">
+                    <div class="small text-muted">Sold this week</div>
+                    <strong>893</strong>
+                  </div>
+                  <div class="actions">
+                    <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
+                  </div>
+                </li>
+                <li>
+                  <i class="icon-cloud-download bg-danger"></i>
+                  <div class="desc">
+                    <div class="title">Ebook</div>
+                    <small>Lorem ipsum dolor sit amet</small>
+                  </div>
+                  <div class="value">
+                    <div class="small text-muted">Downloads</div>
+                    <strong>121.924</strong>
+                  </div>
+                  <div class="actions">
+                    <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
+                  </div>
+                </li>
+                <li>
+                  <i class="icon-camera bg-warning"></i>
+                  <div class="desc">
+                    <div class="title">Photos</div>
+                    <small>Lorem ipsum dolor sit amet</small>
+                  </div>
+                  <div class="value">
+                    <div class="small text-muted">Uploaded</div>
+                    <strong>12.125</strong>
+                  </div>
+                  <div class="actions">
+                    <button type="button" class="btn btn-link text-muted"><i class="icon-settings"></i></button>
+                  </div>
+                </li>
+                <li class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" data-toggle="tooltip" data-placement="top" title="show more"><i class="icon-options"></i></button>
+                </li>
+              </ul>
+            </div>
+            <!--/.col-->
+          </div>
+          <!--/.row-->
+          <br>
+          
+  </div>
+  <!--/.row-->
+</div></div>
+      </div>
+
 <!--[/main]-->

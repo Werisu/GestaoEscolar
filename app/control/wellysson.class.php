@@ -20,6 +20,8 @@ class wellysson extends TPage
         
         // load the styles
         TPage::include_css('app/resources/styles.css');
+        TPage::include_css('app/resources/font-awesome.min.css');
+        TPage::include_css('app/resources/simple-line-icons.css');
         
         // create the HTML Renderer
         $this->html = new THtmlRenderer('app/resources/system_wellysson_pt.html');
