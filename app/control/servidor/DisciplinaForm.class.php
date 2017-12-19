@@ -1,7 +1,7 @@
 <?php
 
 /**
- * A classe DisciplinaForm vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe DisciplinaForm.class.php é uma classe controladora da aplicação de Disciplina, cria formulário e grava dados no banco de dados
  *
  * @author Wellysson Rocha
  * @copyright (c) 2017, Wellysson Rocha
@@ -10,6 +10,7 @@
 class DisciplinaForm extends \Adianti\Control\TPage {
     //put your code here
     
+    /** @var string Variável para criar o formulário */
     protected $form;
     public function __construct() {
         parent::__construct();
@@ -71,6 +72,11 @@ class DisciplinaForm extends \Adianti\Control\TPage {
         
     }
     
+    /**
+     * A função onSave captura e grava as informações do formulário no banco de dados
+     * 
+     * @param int $param
+     */
     public function onSave($param) {
         try{
             $this->form->validate();
@@ -89,6 +95,11 @@ class DisciplinaForm extends \Adianti\Control\TPage {
         }
     }
     
+    /**
+     * A função onEdite edit dados já gravados no banco de dados
+     * 
+     * @param int $param
+     */
     public function onEdit($param){
         try{
             if(array_key_exists('iddisciplina', $param)){
@@ -108,10 +119,20 @@ class DisciplinaForm extends \Adianti\Control\TPage {
         }
     }
     
+    /**
+     * A função onClear reseta o formulário para inserir outra informação
+     * 
+     * @param type $param
+     */
     public function onClear($param){
         
     }
     
+    /**
+     * A função onDelete deleta uma tupla específica do banco de dados
+     * 
+     * @param int $param
+     */
     public function onDelete($param) {
         try{
             if(array_key_exists('iddisciplina', $param)){

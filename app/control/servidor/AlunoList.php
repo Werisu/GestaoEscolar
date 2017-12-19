@@ -1,17 +1,22 @@
 <?php
 
 /**
- * A classe AlunoList vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe AlunoList.class.php éuma classe controladora da aplicação Alunos com a Função de listar os alunos
+ * cadastrados no banco de dados.
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, Wellysson Rocha
+ * @copyright (c) 2017, Wellysson Rocha <wellysson35@gmail.com>
  * @version 1.0
  */
 class AlunoList extends Adianti\Base\TStandardList {
     
+    /** @var string Cria o formulário para pesquisa */
     protected $form;
+    /** @var string cria a tabela com informações do banco de dados */
     protected $datagrid;
+    /** @var string cria a navegação da página */
     protected $pageNavigation;
+    /** @var string Description */
     protected $formgrid;
     protected $deleteButtom;
     protected $transformCallback;

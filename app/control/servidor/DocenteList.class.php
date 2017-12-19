@@ -1,7 +1,7 @@
 <?php
 
 /**
- * A classe DocenteList.class.php lista os docentes cadastrados no sistema
+ * A classe DocenteList.class.php lista os docentes cadastrados no sistema, classe controladora de aplicação
  *
  * @author Wellysson Rocha
  * @copyright (c) 2017, Wellysson Nascimento Rocha
@@ -9,11 +9,18 @@
  */
 class DocenteList extends \Adianti\Base\TStandardList {
     
-    protected $form;
-    protected $datagrid;
+    
+     /** @var string cria o formulário de busca para filtrar dados específicos */
+    protected $form;     // registration form
+    /** @var string cria uma tabela com informações do banco de dados */
+    protected $datagrid; // listing
+    /** @var string cria a naveagção da página */
     protected $pageNavigation;
+    /** @var string Description */
     protected $formgrid;
-    protected $deleteButtom;
+    /** @var string cria um botão delete */
+    protected $deleteButton;
+    /** @var string Description */
     protected $transformCallback;
     
     public function __construct() {
@@ -122,6 +129,11 @@ class DocenteList extends \Adianti\Base\TStandardList {
         
     }
     
+    /**
+     * Essa função imprime os resultados em PDF ou HTML
+     * 
+     * @throws Exception
+     */
     function onGenerate()
     {
         try

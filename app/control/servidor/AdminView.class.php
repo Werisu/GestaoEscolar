@@ -1,10 +1,10 @@
 <?php
 
 /**
- * A classe Pessoa.class.php vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe Pessoa.class.php não esta sendo utilizado.
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, John Doe
+ * @copyright (c) 2017, Wellysson Rocha
  * @version 1.0
  */
 class AdminView extends \Adianti\Base\TStandardList {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * A classe DisciplinaList vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe DisciplinaList.class.php é uma classe controladora da aplicação sobre Disciplina, lista as disciplina
  *
  * @author Wellysson Rocha
  * @copyright (c) 2017, Wellysson Rocha
@@ -10,11 +10,17 @@
 class DisciplinaList extends \Adianti\Base\TStandardList {
     //put your code here
     
+    /** @var string cria o formulário de busca para filtrar dados específicos */
     protected $form;     // registration form
+    /** @var string cria uma tabela com informações do banco de dados */
     protected $datagrid; // listing
+    /** @var string cria a naveagção da página */
     protected $pageNavigation;
+    /** @var string Description */
     protected $formgrid;
+    /** @var string cria um botão delete */
     protected $deleteButton;
+    /** @var string Description */
     protected $transformCallback;
     
     public function __construct() {

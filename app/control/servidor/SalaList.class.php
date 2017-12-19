@@ -1,19 +1,24 @@
 <?php
 
 /**
- * A classe Pessoa.class.php vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe SalaList.class.php é uma classe controladora da aplicação responsável por pegar as informações do banco de dados e mostrar na tela em forma de tabela
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, John Doe
+ * @copyright (c) 2017, Wellysson Nascimento Rocha <wellysson35@gmail.com>
  * @version 1.0
  */
 class SalaList extends Adianti\Base\TStandardList {
-    //put your code here
+    /** @var string cria o formulário de busca para filtrar dados específicos */
     protected $form;     // registration form
+    /** @var string cria uma tabela com informações do banco de dados */
     protected $datagrid; // listing
+    /** @var string cria a naveagção da página */
     protected $pageNavigation;
+    /** @var string Description */
     protected $formgrid;
+    /** @var string cria um botão delete */
     protected $deleteButton;
+    /** @var string Description */
     protected $transformCallback;
     
     public function __construct() {

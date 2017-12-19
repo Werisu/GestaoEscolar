@@ -6,12 +6,13 @@
  * A classe TurmaForm.class.php é uma classe controladora da aplicação Turmas.class.php
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, Wellysson Nascimento Rocha
+ * @copyright (c) 2017, Wellysson Nascimento Rocha <wellysson35@gmail.com>
  * @version 1.0
  */
 class TurmaForm extends \Adianti\Control\TPage {
     //put your code here
     
+    /** @var string para criar o formulário */
     private $form;
     private $datagrid;
     public function __construct() {

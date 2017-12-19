@@ -1,7 +1,7 @@
 <?php
 
 /**
- * A classe AlunoForm cadastrar aluno.
+ * A classe AlunoForm.class.php faz parte das Classes controladoras da aplicação, cria um formulário para aluno.
  *
  * @author Wellysson Rocha
  * @copyright (c) 2017, Wellysson Rocha
@@ -11,6 +11,7 @@ class AlunoForm extends Adianti\Control\TPage {
     
     /** @var string pega os dados do formulário **/
     protected $form;
+    
     
     public function __construct() {
         parent::__construct();
@@ -104,6 +105,12 @@ class AlunoForm extends Adianti\Control\TPage {
         
     }
     
+    
+    /**
+     * Essa função é para salvar capturar e gravar os dados do formulário no banco de dados
+     * 
+     * @param type $param
+     */
     public function onSave($param) {
         try{
             $this->form->validate();
@@ -122,6 +129,11 @@ class AlunoForm extends Adianti\Control\TPage {
         }
     }
     
+    /**
+     * Essa função é para pegar os dados do banco de dados e alterar(editar)
+     * 
+     * @param int $param é passado pelo AlunoList
+     */
     public function onEdit($param){
         try{
             if(array_key_exists('matricula', $param)){
@@ -141,10 +153,20 @@ class AlunoForm extends Adianti\Control\TPage {
         }
     }
     
+    /**
+     * onClear reseta o formulário para inserir um novo dado
+     * 
+     * @param type $param
+     */
     public function onClear($param){
         
     }
     
+    /**
+     * onDelete dela uma tupla específica passado pelo $param do banco de dados, ou seja, serve para deletar dados no banco de dados.
+     * 
+     * @param int $param passado pelo AlunoList
+     */
     public function onDelete($param) {
         try{
             if(array_key_exists('matricula', $param)){

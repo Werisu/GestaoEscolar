@@ -1,7 +1,7 @@
 <?php
 
 /**
- * DocenteForm.class.php
+ * DocenteForm.class.php é uma classe controladora da aplicação sobre Docentes, responsável pela coleta das informações  para serem gravadas no banco de dados através de formulário.
  *
  * @author Wellysson Rocha
  * @copyright (c) 2017, Wellysson Rocha
@@ -9,6 +9,7 @@
  */
 class DocenteForm extends \Adianti\Control\TPage {
     
+    /** @var string cria formulário */
     protected $formulario;
     
     public function __construct() {
@@ -87,6 +88,11 @@ class DocenteForm extends \Adianti\Control\TPage {
         
     }
     
+    /**
+     * A função onSave captura e grava as informações do formulário no banco de dados
+     * 
+     * @param int $param
+     */
     public function onSave($param) {
         try{
             $this->formulario->validate();
@@ -105,6 +111,11 @@ class DocenteForm extends \Adianti\Control\TPage {
         }
     }
     
+    /**
+     * A função onEdite edit dados já gravados no banco de dados
+     * 
+     * @param int $param
+     */
     public function onEdit($param){
         try{
             if(array_key_exists('iddocente', $param)){
@@ -124,10 +135,20 @@ class DocenteForm extends \Adianti\Control\TPage {
         }
     }
     
+    /**
+     * A função onClear reseta o formulário para inserir outra informação
+     * 
+     * @param type $param
+     */
     public function onClear($param){
         
     }
     
+    /**
+     * A função onDelete deleta uma tupla específica do banco de dados
+     * 
+     * @param int $param
+     */
     public function onDelete($param) {
         try{
             if(array_key_exists('iddocente', $param)){

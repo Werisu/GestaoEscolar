@@ -1,23 +1,25 @@
 <?php
 
 /**
- * A classe TurmaList.class.php vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe TurmaList.class.php é uma classe controladora de aplicação, lista turmas cadastradas
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, Wellysson Rocha
+ * @copyright (c) 2017, Wellysson Rocha <wellysson35@gmail.com>
  * @version 1.0
  */
 class TurmaList extends Adianti\Base\TStandardList{
-    //put your code here
     
-    #private $datagrid;
-    #private $loaded;
-    
+    /** @var string cria o formulário de busca para filtrar dados específicos */
     protected $form;     // registration form
+    /** @var string cria uma tabela com informações do banco de dados */
     protected $datagrid; // listing
+    /** @var string cria a naveagção da página */
     protected $pageNavigation;
+    /** @var string Description */
     protected $formgrid;
+    /** @var string cria um botão delete */
     protected $deleteButton;
+    /** @var string Description */
     protected $transformCallback;
             
     function __construct() {

@@ -1,15 +1,16 @@
 <?php
 
 /**
- * A classe Pessoa.class.php vai ser a classe mais complicada de se implementar, não sei se conseguirei.
+ * A classe SalaForm.class.php é uma classe controladora de aplicação responsável pela manipulação do formulário de inserção de informações no banco de dados
  *
  * @author Wellysson Rocha
- * @copyright (c) 2017, John Doe
+ * @copyright (c) 2017, Wellysson Rocha
  * @version 1.0
  */
 class SalaForm extends \Adianti\Control\TPage {
     //put your code here
     
+    /** @var string para criar o formulário */
     protected $form;
     public function __construct() {
         parent::__construct();
@@ -39,6 +40,11 @@ class SalaForm extends \Adianti\Control\TPage {
         $this->add($container);
     }
     
+    /**
+     * A função onSave captura e grava as informações do formulário no banco de dados
+     * 
+     * @param int $param
+     */
     public function onSave($param) {
         try{
             $this->form->validate();
@@ -57,6 +63,11 @@ class SalaForm extends \Adianti\Control\TPage {
         }
     }
     
+    /**
+     * A função onEdite edit dados já gravados no banco de dados
+     * 
+     * @param int $param
+     */
     public function onEdit($param){
         try{
             if(array_key_exists('idsala', $param)){
@@ -76,10 +87,20 @@ class SalaForm extends \Adianti\Control\TPage {
         }
     }
     
+    /**
+     * A função onClear reseta o formulário para inserir outra informação
+     * 
+     * @param type $param
+     */
     public function onClear($param){
         
     }
     
+    /**
+     * A função onDelete deleta uma tupla específica do banco de dados
+     * 
+     * @param int $param
+     */
     public function onDelete($param) {
         try{
             if(array_key_exists('idsala', $param)){
